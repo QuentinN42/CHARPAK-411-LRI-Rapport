@@ -1,0 +1,37 @@
+
+
+\newcommand{\none}{\textit{}\\}
+
+\newcommand{\mathematica}{\href{https://www.wolfram.com/mathematica/}{\textsc{Mathematica }}}
+\newcommand{\lamap}{\href{https://www.fondation-lamap.org/}{\textit{"la main a la pâte" }}}
+\newcommand{\ivgc}{\href{http://www.villebon-charpak.fr/}{\textit{Institut Villebon Georges Charpak }}}
+
+
+% config
+\pagestyle{plain}
+\floatplacement{figure}{H}
+
+\captionsetup{justification=centering}
+
+
+\def \grand {200pt}
+\def \moyen {150pt}
+\def \petit	{100pt}
+\def \mini	{ 50pt}
+
+
+\def \vo    {v_{0}}
+\def \reau  {\rho_{eau}}
+\def \ux    {\vec{u_{x}}}
+
+
+\newcommand{\img}[4]{ %taille,lien,description,label
+\begin{figure}
+	\begin{center}
+		\includegraphics[height=#1]{#2}
+	\end{center}
+	\caption{#3}
+	\label{#4}
+\end{figure}
+}
+
