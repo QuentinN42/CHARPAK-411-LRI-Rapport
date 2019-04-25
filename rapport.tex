@@ -1,9 +1,10 @@
 \documentclass[a4paper,10pt]{report}
 
-\input{include}
+\input{include.tex}
 
-\input{perso}
+\input{perso.tex}
 
+\usepackage[nottoc]{tocbibind}
 
 %Title
 \title{Rapport de stage}
@@ -19,11 +20,15 @@
 
 \tableofcontents
 
+\begin{center}
+    \textit{Le mouvement Brownien est une description mathématique du mouvement aléatoire d'une «grosse» particule immergée dans un fluide et qui n'est soumise à aucune autre interaction que des chocs avec les «petites» molécules du fluide environnant.} \cite{bla}
+\end{center}
+
 \newpage
 
-\addcontentsline{toc}{section}{Bibliographie}
-\bibliographystyle{IEEEtran}
-\bibliography{biblio}{}
-    
-    
+%\addcontentsline{toc}{section}{Bibliographie}
+
+\bibliographystyle{ieeetr}
+\bibliography{biblio}
+
 \end{document}
