@@ -1,22 +1,24 @@
 
-\subsubsection{Qu'est ce que c'est ?}
-On entend souvent dans les médias parler d'intéligence artificielle et de réseaux de neurones,
+Les médias parlent souvent d'intéligence artificielle et de réseaux de neurones,
 ces deux notions sont radicalements différentes
 mais elles sont souvent mélangées et confondues sur la place publique\ldots \\
 
 L'intéligence artificelle est un concept informatique, un paradigme de programation,
-ce n'est pas ce que j'ai fait durant mon stage, on n'en parlera pas ici mais si vous voullez en savoir plus,
-je vous redirige vers la chaine youtube de Lê \textsc{Nguyên Hoang}, chercheur en mathématique qui saura
-vous l'expliquer bien mieux que moi (à regarder sans moderation)\cite{science4all}. \\
+cette notion n'a pas été abordée durant mon stage, il n'en serra pas question ici.
+Cependant si vous voullez en savoir plus, je vous redirige vers la chaine youtube de Lê \textsc{Nguyên Hoang}.
+Anciennement chercheur en mathématique et aujourd'hui vulgarisateur sur internet et à l'\textsc{epfl}
+ses vidéos sont à regarder sans moderation\cite{science4all}. \\
 
-Un réseau de neurones est une architecture informatique permetant de faire
-des regressions de fonctions, de la généralisation et de l'optimisation.
+Un réseau de neurones est une architecture informatique inventée en 1950 et remis à la mode grâce aux travaux
+de Yan \textsc{Le Cun} durant les années 1980 permetant de faire des regressions de fonctions,
+de la généralisation et de l'optimisation.
 Il est composé, comme son nom l'indique, de neurones mis en réseau grace à des connexions.
 
 
 \subsubsection{Un neurone}
-Un neurone (représenté par un cercle dans les schemas) est une unité de base du réseau,
-il se decompose en trois phases
+Un neurone est une unité de base du réseau, il se decompose en trois phases.
+\textcolor{red}{image 1 neurone}
+
 
 \paragraph{L'entrée :}
 Un neurone prend des informations en entrée, de manière générale un nombre réel entre 0 et 1
@@ -26,12 +28,11 @@ Il n'y a pas de nombre minimum ou maximums
 ni de contrainte sur les differents objets.
 \exemle
 {
+Un neurone prenant :
 \begin{itemize}
-    \item un neurone prenant les trois valleur de coulleur d'un pixel\\
-            (entier entre $0$ et $255$).
-    \item un neurone prenant les trois valleur de coulleur d'un pixel\\
-            (réel $[0, 1]$).
-    \item un neurone prenant une sequence \textsc{adn} en entrée
+    \item les trois valleur de coulleur d'un pixel (entier entre $0$ et $255$).
+    \item les trois valleur de coulleur d'un pixel (réel $[0, 1]$).
+    \item une sequence \textsc{adn} en entrée
 
 \end{itemize}
 }
@@ -52,9 +53,10 @@ Le vecteur poid se note $W$ et chacun de ses element $w_1 \ldots w_i \ldots w_n$
             (avec $x_1$ une sequence \textsc{adn})
 \end{itemize}
 }
+On note la fonction interne $f(X)$ (avec $X$ le vecteur d'entrée).
 
 \paragraph{La fonction d'activation :}
-Comme vus precedement, ces réseaux sont mis en résau,
+Comme vus precedement, ces neurones sont mis en résau,
 il est donc interessant d'avoir une norme pour l'entré et la sortie
 afin de pouvoir lier des neurones entre eux sans distinctions. \\
 La norme qui a été choisie est, comme précedement cité, un réel entre $0$ et $1$.
@@ -66,20 +68,24 @@ On utilise donc la fonction d'activation afin de normaliser les sorties.
 {
 \begin{itemize}
     \item[Pour le cas precedent sur l'\textsc{adn} :] $f(X)/w_1$
-    \item[Pour une fonction de $\mathbb{R}$ dans $\mathbb{R}$ :] fonction sigmoide
-    \item[Pour une fonction de $\mathbb{R}$ dans $[0, 1 \rbrack$ :] fonction identité
+    \item[Pour une fonction dans $\mathbb{R}$ :] fonction sigmoide
+    \item[Pour une fonction dans $[0, 1 \rbrack$ :] fonction identité
 \end{itemize}
 }
+On note la fonction d'activation $f_{act}$.
+
 
 \paragraph{Pour resumer :}
-On prend \textit{des entrées},
-on les passe dans la \textit{fonction principale} du neurone,
+Un neurone prend \textit{des entrées},
+les passe dans sa \textit{fonction principale},
 puis le résultat dans la \textit{fonction d'activation}. \\
-Le résultat resemble a cela :
+Formellement, on obtient la formule suivante :
 \begin{equation}
     f_{act}(f(X))
 \end{equation}
-Le tout dépendant bien évidement de $W$ que l'on peut faire varier afin de modifier la fonction du neurone.
+
+
+Le tout dépendant bien évidement du vecteur $W$ que l'on peut faire varier afin de modifier la fonction du neurone.
 \exemle
 {
 Prenons un neurone avec deux entrées : $x_1$ et $x_2$, \\
@@ -104,6 +110,7 @@ chacunes composée de neurones dont les entrées sont les sorties des neurones l
     \center
     \includegraphics[height=\petit]{pict/net1.jpeg}
 	\caption{Réseau dense simple}
+    {\tiny \url{techburst.io/experiment-finding-objects-with-a-neural-network-caa4cec7d2c4}}
 	\label{fig:simple-dense}
 \end{figure}
 Comme on peut le voir sur la figure,
