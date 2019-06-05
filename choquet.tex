@@ -1,18 +1,19 @@
 
-L'integrale de choquet est une intégrale découlant de la théorie de la mesure que je n'ai pas vus,
-de plus, ici on ne parlera que du modele discret.\\
+L'integrale de choquet est une intégrale découlant de la théorie de la mesure\cite{artch}.
+Ici on ne parlera que du modele discret.\\
 
 
 Pour l'expliquer simplement, prenons un exemple :
-Suposons que l'on veuille conseiller des personnes sur l'achat d'un oridnateur.
+Suposons que l'on veuille conseiller des personnes sur l'achat d'ordinateurs.
 Ces personnes de conaissent absolument rien en informatique.
-La seul chose qu'ils veullent c'est une note, plus elle est élevée, plus l'ordinateur est performant.
+La seul chose qu'ils veullent est une note, plus elle est élevée, plus l'ordinateur est performant.
 Essayons de faire un algorithme assez simple pour résoudre ce problemme :
 Chaque composant se voit atribué une note (en fonction de la puissance, la qualité de fabrication\ldots),
 on appelle cette note \textit{l'utilité} du composant.
-Une fois toutes les utilitées étudiées, on donne un poid à chacuns des composant.
+Une fois toutes les utilitées étudiées, on donne un poid à chaque famille de composants
+(\textsc{ram}, processeur, carte mère\ldots).
 Enfin on fait la somme de utilité fois poid pour tout les composant.\\
-Ainsi, si un ordinateur a de meilleurs composant, plus de puissance, ect, sa note sera superieure.\\
+De ce fait, si un ordinateur a de meilleurs composant, plus de puissance, ect, sa note sera superieure.\\
 
 
 Ce modèle parait raisonable dans la plupart des cas mais il est extraimement mauvais dans les cas extremes :
@@ -25,7 +26,11 @@ cet ordinateur est assez inutile\ldots\\
 Il faudrait donc trouver un autre système modélisant les interactions entre les composants.
 Ce modèle est exactement celui sur lequel j'ai travaillé durant mon stage: \textit{les intégrales de choquet}.
 En plus de donner un poid aux utilité,
-un poid est donné aux interactions deux a deux des utilitées par le biais des fonctions min et max.\\
+un poid est donné aux interactions des utilitées par le biais des fonctions min et max.
+Ces intéractions peuvent être faites deux à deux, trois à trois voir à plus.
+Mais pour des raison de temps de calcul, ces interactions se sont limités à l'interactions simple
+(deux à deux) durant mon stage.
+En effet, la taille du calcul évolue exponentiellement avec les interactions.\\
 
 
 Voici donc la fonction que l'on vas vouloir aproximer :

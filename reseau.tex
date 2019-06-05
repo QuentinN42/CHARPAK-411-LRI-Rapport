@@ -120,7 +120,7 @@ Tout les autres neurones sont "cachés", il n'intéragissent pas directement ave
 
 
 \subsubsection{L'apprentissage}
-Jusqu'ici on a vus comment creer une architecture modulable permetant d'aproximer toute les fonctions.
+Jusqu'ici on a vus comment creer une architecture modulable permetant de générer une fonction à paramètres.
 Mais une question se pose toujours :\\
 Quel est l'intéret ?
 Pourquoi ne pas directement écrire la fonction "en dur" ?\\
@@ -143,24 +143,32 @@ elle retourne un réel positif, plus il est faible, plus le réseau est proche d
 }
 Le probleme de regression se résume alors à minimiser la fonction de prete,
 c'est ici que la descente de gradient stochastique fait son entrée :
-Pour minimiser loss, on aimerai bien descendre sa pente, cad dériver suivant les diférentes variables
-\footnote{\textsc{NB :} Ici les variables sur lesquels on intervient sont les $w_i$ (pas les $x_i$).}.
+
+
+\paragraph{Descente de gradient :}
+Pour minimiser loss, on aimerai bien descendre sa pente, c'est à dire dériver suivant les diférentes variables
+\footnote{\textsc{NB :} Ici les variables sur lesquels on intervient sont les $w_i$ (pas les $x_i$).},
+en déduire l'orientation de la pente, et la descendre.
 Étant donné que de manière générale, il y a plusieurs variables, la dérivée se transforme en gradient.
-Ainsi, afin de pouvoir calculer facilement les gradients,
-des applications linéaires sont privilégiées dans les fonctions des neurones.\\
+Des applications linéaires sont privilégiées dans les fonctions des neurones,
+afin de pouvoir calculer facilement les gradients.\\
 
 
+\paragraph{Stochastique :}
 On a donc expliqué d'ou vient la descente de gradient, mais que veut dire stochastique ?
-Le mot stochastique est synonyme de hasard.
-En effet le temps de calcul du gradient est exponentiel
-alors lorsque le réseau est grand
+Ce mot est synonyme de hasard.
+En effet le temps de calcul du gradient est exponentiel vus que chaque neurones est relié a $n$ neurones,
+eux même reliés à $n$ autres neurones ect\ldots\\
+Alors lorsque le réseau est grand
 (un réseau peut facillement atteindre le million de neurones voir même des milliards\cite{i3espectrum})
-il est inimaginable de calculer la totalité du gradient, on utilise alors le gradient stochastique.\\
+il est inimaginable de calculer la totalité du gradient (les calculs peuvent parfois depasser
+plusieurs fois la durée de l'univers\ldots),
+on utilise alors le gradient stochastique.\\
 
 
-Cette descente de gradient est extremement rapide, ainsi, il est possible de l'iterer de nombreuses fois
+Cette descente de gradient est bien plus rapide, il est donc possible de l'iterer de nombreuses fois
 pour essayer de minimiser la fonction de perte.
 L'espaces des solutions étant rarement idéal
 (rarement une "cuvette" mais constitué de "bosses" et de "trous" chaotiques)
 il n'est pas obligatoire d'arriver à atteindre le minimum global mais au moins minimum local sera atteind.
-Ainsi, avec plusieurs apprentissages on peut approximer très efficacement quasiment toutes les fonctions.
+Avec plusieurs apprentissages on peut alors approximer très efficacement quasiment toutes les fonctions.

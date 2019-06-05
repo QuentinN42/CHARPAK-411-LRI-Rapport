@@ -32,18 +32,37 @@
 \newcommand{\galac}{\textsc{GALaC}}
 \newcommand{\sgd}{\textsc{sgd}}
 
-\newcommand{\exemle}[1]
+
+\newcommand{\bbox}[2]
 {
 \begin{tcolorbox}[
     colback=blue!1,
     colframe=blue!40!black,
     title=
-    \textbf{Exemples :}
+    \textbf{#1}
     ]
-	#1
+	#2
 \end{tcolorbox}
 }
 
+
+\newcommand{\rbox}[2]
+{
+\begin{tcolorbox}[
+    colback=red!1,
+    colframe=red!40!black,
+    title=
+    \textbf{#1}
+    ]
+	#2
+\end{tcolorbox}
+}
+
+
+\newcommand{\exemle}[1]
+{
+	\bbox{Exemple(s) :}{#1}
+}
 
 
 \newcommand{\img}[4]{ %taille,lien,description,label
