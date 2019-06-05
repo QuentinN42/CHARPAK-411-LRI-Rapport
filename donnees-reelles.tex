@@ -1,0 +1,29 @@
+Une base de donnée disponible en ligne sur \textsc{Kaggle} à aussi été étudiée\cite{kaggle}.
+La base de donnée traite des prix de maisons vendues entre $2014$ et $2015$
+dans le King Country, \textsc{wa}, \textsc{usa}.\\
+La base de donnée à premièrement été netoyé afin de retier certainnes données non pertinantes :
+\begin{itemize}
+    \item[L'\textsc{id} de la maison :] le numéro de l'entré dans la base de données.
+    \item[La date d'achat :] étant donné que l'echelle de temps est assez restrainte, cette valeur est plutot un facteur de confusion.
+    \item[La position de la maison :] (longitude et latitude) de même que précédement, les positions sont proches.
+\end{itemize}
+Ensuite l'année de construction et de rénovation ont été fusionnées.\\
+
+
+Pour rechercher les fonctions d'utilitées, une liste de fonctions possible à été dressée:
+\begin{itemize}
+    \item Polynomes de degrés allant de $1$ à $3$
+    \item Exponentiel
+    \item Logarithme
+    \item Hyperbolique
+    \item Racine
+    \item Sigmoide
+    \item Gaussienne
+\end{itemize}
+Une fois toutes ces fonctions codées, chaque plage de données à essayé d'être regressée grâce à celles ci.
+La fonction obtenant le meilleur $R^2$ à été conservé si celui ci était superieur à $0.3$ afin de retirer
+les données n'agissant pas sur le prix.\\
+
+
+En utilisant les fonctions d'utilitées trouvées precedement, une réseau de choquet à été créé puis entrainé
+sur cette base de données.
