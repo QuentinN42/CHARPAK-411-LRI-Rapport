@@ -6,7 +6,7 @@ mais elles sont souvent mélangées et confondues sur la place publique\ldots \\
 L'intéligence artificelle est un concept informatique, un paradigme de programation,
 cette notion n'a pas été abordée durant mon stage, il n'en serra pas question ici.
 Cependant si vous voullez en savoir plus, je vous redirige vers la chaine youtube de Lê \textsc{Nguyên Hoang}.
-Anciennement chercheur en mathématique et aujourd'hui vulgarisateur sur internet et à l'\textsc{epfl}
+Anciennement chercheur en mathématique et aujourd'hui vulgarisateur sur internet et à l'\textsc{EPFL}
 ses vidéos sont à regarder sans moderation\cite{science4all}. \\
 
 Un réseau de neurones est une architecture informatique inventée en 1950 et remis à la mode grâce aux travaux
@@ -16,8 +16,19 @@ Il est composé, comme son nom l'indique, de neurones mis en réseau grace à de
 
 
 \subsubsection{Un neurone}
-Un neurone est une unité de base du réseau, il se decompose en trois phases.
-\textcolor{red}{image 1 neurone}
+Un neurone est une unité de base du réseau, il se decompose en trois phases :
+\begin{itemize}
+    \item L'entrée
+    \item La fonction interne
+    \item La fonction d'activation
+\end{itemize}
+Elles s'agencent de la manière suivante :
+\begin{figure}[H]
+    \center
+    \includegraphics[height=\petit]{pict/neurone.png}
+	\caption{Un neurone}
+    \label{fig:neurone}
+\end{figure}
 
 
 \paragraph{L'entrée :}
@@ -41,7 +52,7 @@ On note le vecteur entrée $X$ et chacun de ses element $x_1 \ldots x_i \ldots x
 \paragraph{La fonction interne :}
 Le réseau vas alors faire un calcul à partir des entrées et de poids,
 des valleurs définies pour chaque neurones qui peuvent varier durant l'apprentissage. \\
-Le vecteur poid se note $W$ et chacun de ses element $w_1 \ldots w_i \ldots w_n$.
+Le vecteur poids se note $W$ et chacun de ses element $w_1 \ldots w_i \ldots w_n$.
 
 \exemle
 {
@@ -79,7 +90,7 @@ On note la fonction d'activation $f_{act}$.
 Un neurone prend \textit{des entrées},
 les passe dans sa \textit{fonction principale},
 puis le résultat dans la \textit{fonction d'activation}. \\
-Formellement, on obtient la formule suivante :
+Formellement, on obtient l'équation suivante :
 \begin{equation}
     f_{act}(f(X))
 \end{equation}
@@ -167,7 +178,7 @@ on utilise alors le gradient stochastique.\\
 
 
 Cette descente de gradient est bien plus rapide, il est donc possible de l'iterer de nombreuses fois
-pour essayer de minimiser la fonction de perte.
+pour tenter de minimiser la fonction de perte.
 L'espaces des solutions étant rarement idéal
 (rarement une "cuvette" mais constitué de "bosses" et de "trous" chaotiques)
 il n'est pas obligatoire d'arriver à atteindre le minimum global mais au moins minimum local sera atteind.

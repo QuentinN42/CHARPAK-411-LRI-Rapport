@@ -1,7 +1,7 @@
 
 \subsection{Moyenne :}\label{subsec:moy}
 Il a été demandé au réseau de regresser une fonction moyenne à deux dimentions :
-Les poid qui sont censé etre obtenus sont les suivants :
+Les poids qui sont censé etre obtenus sont les suivants :
 \begin{equation}
     \label{eq:moy}
     m(X) =\frac{x_1 + x_2}{2} = 0.5 \times x_1 + 0.5 \times x_2
@@ -89,6 +89,7 @@ elle reste extremement faible $R^2 > 0.99$.
 Cet exemple illustre très bien l'extrème robustesse des réseaux de neurones aux perturbations.
 Ce réseau n'auras donc pas trop de mal à apprendre sur des données réelles (souvent très ébruitées).
 
+
 \subsection{Base de données réelle}\label{subsec:real}
 Les données ont été passées dans un réseau de neurones sans traitement specifique.
 Voici le resultat de l'apprentissage:
@@ -120,5 +121,23 @@ En effet, l'espace des poids etant bien plus restraint,
 le réseau explore cet espace bien plus rapidement.
 
 
-Les résultats sont donc passés dans un réseau de choquet afin d'en calculer tout ces coefficients.
+Les résultats sont donc passés dans un réseau de choquet afin d'en calculer tout ces coefficients :
+\begin{figure}[H]
+    \center
+    \includegraphics[height=\moyen]{pict/real/netch.png}
+    \includegraphics[height=\petit]{pict/real/learnch.png}
+	\caption{Apprentissage avec le réseau de choquet}
+	\label{fig:real-choquet}
+\end{figure}
+
+En observant la \textsc{Figure}\ \ref{fig:real-choquet}, il est visible que seul deux paramètres
+ont des valeurs significativement differentes de $0$.
+Ces parametres sont les suivants :
+\begin{itemize}
+    \item[min(note, nombre de salles de bains) :] La note est un indicateur donné par l'état sur le niveau de la maison.\\
+        Et les maisons ayant beaucoups de salles de bains sont plus cher dans cette base de données.
+    \item[min(superficie, nombre de salles de bains) :] On retrouve ici la taille de la maison,
+        mais ce n'est pas le facteur déterminant pour donner un prix à une maison.
+\end{itemize}
+
 

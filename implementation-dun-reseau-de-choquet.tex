@@ -23,21 +23,29 @@ Voici l'architecture d'un réseau de choquet entierement générée par un rése
     \includegraphics[height=\moyen]{pict/chnet1}
 	\caption{Architecture d'un réseau de choquet}
 	\label{fig:chnet1}
+    \vspace{-10pt}
     \begin{center}
+        \tiny
         \textit{
-        En bleu, des neurone appliquant $\min(X)$, en vert $\max(X)$.
+        En bleu, des neurone appliquant pour fonction principale $\min(X)$. \\
+        En vert, des neurone appliquant pour fonction principale $\max(X)$.
         }
     \end{center}
 \end{figure}
 \vspace{-12pt}
-On peut voir que trois problemes non triviaux se posent :
+On peut voir que trois problemes non triviaux se posent (\textit{cf.}\ \ref{subsec:réseau-de-neurones}) :
 \begin{itemize}
-    \item Les neurones collorées n'appliquent pas une fonction simple.
-    \item Les neurones ne sont pas reliés de manière simple (\textit{cf.}\ \ref{subsec:réseau-de-neurones}).
+    \item Les neurones collorées n'appliquent pas une simple application linéaire.
+    \item Les neurones ne sont pas reliés en mode Dense mais en convolution.
     \item Certains neurones passent des informations en sautant une couche de neurones.
 \end{itemize}
-Une autre piste à alors été envisagée :
-Créer un réseau simple comme dans la figure suivante :
+
+
+\paragraph{Une autre piste à alors été envisagée :}
+Créer un réseau simple comme dans la figure\ \ref{fig:net3}.
+Dans ce réseau, aucuns neurone n'a de fonction complexe :
+ceux de gauche sont les entrées et
+celui de droite fait le produit scalaire avec un vecteur poids.
 \begin{figure}[H]
     \center
     \includegraphics[height=\petit]{pict/net3.png}
@@ -45,8 +53,6 @@ Créer un réseau simple comme dans la figure suivante :
 	\label{fig:net3}
 \end{figure}
 \vspace{-12pt}
-Ici, aucuns neurone n'a de fonction spécifique, ceux de gauche sont les entrées
-et celui de droite fait le produit scalaire avec un vecteur poid.
 Ce réseau est bien plus simple à générer : c'est un réseau \emph{Dense} de taille $9$ en entrée.
 Et plus généralement $n^2$ pour un vecteur de taille $n$.
 
@@ -54,27 +60,20 @@ Et plus généralement $n^2$ pour un vecteur de taille $n$.
 \rbox{Démonstation :}
 {
 Prenons un vecteur de taille $n$,
-Le but est d'énumerer le nombre de neurones utiles a la formule (\ref{eq:choquet}).
+Le but est d'énumerer le nombre de neurones utiles a l'équation\ (\ref{eq:choquet}).
 Le resultat est le suivant :
 \begin{equation}
     n + \dbinom{n}{2} + \dbinom{n}{2} = n + 2 \times \frac{n(n-1)}{2} = n^2
 \end{equation}
 }
 
-Il faut alors créer une base de donnée d'aprentissage à partir de chaqu'unes des fonctions d'utilitées
-ce qui se fait tout simplement de la manière suivante :
-\begin{lstlisting}[Language=Python]
-def two_by_two(vector: iter, func: callable) -> np.array:
-    out = np.array([])
-    length = len(vector)
-    for i in range(length):
-        for j in range(i + 1, length):
-            out = np.append(out, func(vector[[i, j]]))
-    return out
+Il faut alors créer un vecteur d'entrée à partir une base de donnée d'aprentissage.
+Cela se fait simplement en concaténant le vecteur $X$ avec les elements pris deux à deux passés
+dans les fonctions min et max.\\
 
-Xs = np.concatenate((X, two_by_two(X, min), two_by_two(X, max)))
-\end{lstlisting}
-Lors de la descente de gradient, le réseau traite les poids indiférement, pour les récupérer,
+
+Lors de la descente de gradient, le réseau traite les poids indiférement,
+pour les récupérer les poids de l'équation\ (\ref{eq:choquet})
 il sufit de prendre les $n$ premiers pour $W$,
-les $\frac{n(n-1)}{2}$ suivant pour $W_{\min}$
-et les $\frac{n(n-1)}{2}$ derniers pour $W_{\max}$.
+les $\frac{n(n-1)}{2}$ suivant pour $W_m$
+et les $\frac{n(n-1)}{2}$ derniers pour $W_M$.
