@@ -1,30 +1,124 @@
 
-On peut maintenant faire apprendre au réseau nimporte quelle application linéaire.
-Par exemple la moyenne :
+\subsection{Moyenne :}\label{subsec:moy}
+Il a été demandé au réseau de regresser une fonction moyenne à deux dimentions :
+Les poid qui sont censé etre obtenus sont les suivants :
+\begin{equation}
+    \label{eq:moy}
+    m(X) =\frac{x_1 + x_2}{2} = 0.5 \times x_1 + 0.5 \times x_2
+\end{equation}
 
+On peut voir ci dessous un graphique à 3 dimentions des valeurs atendues (gauche) et obtenues (droite) :
 \begin{figure}[H]
     \center
     \includegraphics[height=\petit]{pict/moy/expected}
     \includegraphics[height=\petit]{pict/moy/result}
 	\caption{Apprentissage de la moyenne}
+    \vspace{-10pt}
     \begin{center}
+        \tiny
         \textit{
-        A gauche, le résutltat atendu, a droite, celui renvoyé.\\
-        $x_1$ en absice, $x_2$ en ordonées.
+        Les axes $x$ et $y$ corespondent respectivement à $x_1$ et $x_2$.
+        La valeur en tout point de la fonction est représentée par un gradient de couleur
+        dont l'echelle est sur la droite du graphique.
         }
     \end{center}
 	\label{fig:moy}
 \end{figure}
 \vspace{-12pt}
 
-On peut voir que la descente de gradients se fait a merveille.
-Aucunes difference ne sont visibles : en effet les poids associés aux deux noeuds sont les suivants :
+Aucune difference n'est visible, en effet les poids associés aux deux noeuds sont les suivants :
 \begin{equation*}
     w_1 = 0.50000010
     \;\;\;\;\;\;\;\;\;
     w_2 = 0.50000024
 \end{equation*}
-On peut voir qu'aux aproximations processeur, les poids sont les bons pour faire la moyenne de deux nombres :
-\begin{equation*}
-    m =\frac{n_1 + n_2}{2} = 0.5 \times n_1 + 0.5 \times n_2
-\end{equation*}
+Aux aproximations processeur, les poids sont les mêmes que dans (\ref{eq:moy}).
+
+
+\subsubsection{Étude de l'apprentissage :}\label{subsec:app}
+Théoriquement, l'écart type de l'erreur d'apprentissage devrais
+diminuer quand la taille de la base de donnée augmente.
+Pour tester cette hypothèse, des graphiques ont étés générés avec
+differentes tailles de base de données :
+
+\begin{figure}[H]
+    \center
+    \includegraphics[height=\moyen]{pict/appfd.png}
+	\caption{Écart type de l'apprentissage en fonction de la taille de la base de données}
+	\label{fig:etfdata2graph}
+\end{figure}
+\vspace{-5pt}
+On peut voir ici que l'erreur d'aprentissage s'amoindrit avec l'augmentation de la taille de la base de données.
+Cette évolution s'arette vers les $1000$ données, dépassé ce cap, l'écart type stagne.
+
+
+Un graphique a taille de base de donnée fixée de l'écart type de l'apprentissage
+en fonction du nombre d'aprensitssages réalisés par le réseau.
+Cette technique permet de ne pas stagner dans un minimum local.
+
+\begin{figure}[H]
+    \center
+    \includegraphics[height=\moyen]{pict/appfn.png}
+	\caption{Ecart type de l'apprentissage moyen en fonction du nombre d'aprensitssages}
+	\label{fig:etfngraph1}
+\end{figure}
+\vspace{-5pt}
+Ici on peut voir que la moyenne ne varie pas significativement mais l'ecart type diminue drastiquement.
+Ce parametre combiné au precedent permetra d'augmenter la précision du réseau dans la partie\ \ref{subsec:real}.
+
+
+\subsection{Étude de la resistance aux perturbations}\label{subsec:random}
+Le réseau essaye de regresser une fonction toute simple:
+\begin{equation}
+    \frac{1}{3} \times x + \frac{2}{3} \times y
+\end{equation}
+Ici, les poids $1/3$ et $2/3$ ont été choisit pour casser la simétrie.
+Une perturbation random équiprobable entre $-err$ et $err$ est ajouté aux données.
+Voici un graphique de l'erreur de l'aprentissage en fonction de cette erreur
+(allant de $0$ à $\pm$ le maximum de la fonction) :
+\begin{figure}[H]
+    \center
+    \includegraphics[height=\moyen]{pict/random.png}
+	\caption{Variation d'aprensitssage en fonction de la perturbation}
+	\label{fig:obj2tiers1}
+\end{figure}
+
+Même si l'erreur moyenne augmente exponentiellement avec la perturbation,
+elle reste extremement faible $R^2 > 0.99$.
+
+Cet exemple illustre très bien l'extrème robustesse des réseaux de neurones aux perturbations.
+Ce réseau n'auras donc pas trop de mal à apprendre sur des données réelles (souvent très ébruitées).
+
+\subsection{Base de données réelle}\label{subsec:real}
+Les données ont été passées dans un réseau de neurones sans traitement specifique.
+Voici le resultat de l'apprentissage:
+
+\begin{figure}[H]
+    \center
+    \includegraphics[height=\petit]{pict/real/res1.png}
+    \includegraphics[height=\petit]{pict/real/learn1.png}
+	\caption{Apprentissage sur les données réelles}
+	\label{fig:def_100_100}
+\end{figure}
+L'apprentissage est ici totalement cahotique.
+Ce resultat était attendu étant donné que les fonction d'utilité n'ont pas été
+calculées et que le prix d'une maison n'est pas un calcul simple.
+Ici, il est impossible de calculer le prix avec un simple $Surface \times Prix/m^3$.\\
+
+
+Les fonctions d'utilitées ont donc été calcullées.
+Voici le resultat :
+\begin{figure}[H]
+    \center
+    \includegraphics[height=\petit]{pict/real/resut.png}
+    \includegraphics[height=\petit]{pict/real/learnut.png}
+	\caption{Apprentissage sur les données réelles}
+	\label{fig:ut1_100_100}
+\end{figure}
+Il peut être remarqué peut que l'aprentissage est bien plus précis.
+En effet, l'espace des poids etant bien plus restraint,
+le réseau explore cet espace bien plus rapidement.
+
+
+Les résultats sont donc passés dans un réseau de choquet afin d'en calculer tout ces coefficients.
+
