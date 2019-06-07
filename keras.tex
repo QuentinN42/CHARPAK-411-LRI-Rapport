@@ -1,8 +1,8 @@
 La librairie Keras est une interface Python/TensorFlow\cite{tf} permettant de manipuler des réseaux de neurones.
 Ici, seul les fonctionnalités principales seront étudiées,
-a savoir
+à savoir
 création d'un réseau simple,
-regression par \sgd\
+régression par \sgd\
 et évaluation de performances.\\
 
 
@@ -29,8 +29,8 @@ Avec :
 \vspace{-12pt}
 
 
-Pour créer ce réseau et lui faire apprendre la fonction précédement citée,
-le code suivant est néscessaire :
+Pour créer ce réseau et lui faire apprendre la fonction précédemment citée,
+le code suivant est nécessaire :
 \lstinputlisting[language=Python]{code/reseau1.py}
 
 
@@ -47,7 +47,7 @@ Elle pourra être appelée avec de nombreux paramètres qui seront abordés dans
 
 
 Pour tester la robustesse de cet apprentissage, une fonction avec perturbations a été étudiée :
-Une fonction simple a été générée comme précédement, il y a été ajouté une perturbation aléatoire équiprobable.
+Une fonction simple a été générée comme précédemment, il y a été ajouté une perturbation aléatoire équiprobable.
 L’erreur d’apprentissage en fonction de cette valeur a donc été étudiée.\\
 
 
@@ -68,7 +68,7 @@ Prenons l'équation\ (\ref{eq:Choquet}) avec, par exemple, un vecteur de taille 
         w_1.x_1 + w_2.x_2 + w_M.\max(x_1,x_2) + w_m.\min(x_1,x_2)
     &\\
 \end{align*}
-\'Etant donné que les données d'apprentissage sont des réels aléatoires indépendants entre $0$ et $1$ :
+Étant donné que les données d'apprentissage sont des réels aléatoires indépendants entre $0$ et $1$ :
 \begin{equation}
     \label{eq:proba}
     P(x_1 > x_2) = P(x_1 < x_2) = \frac{1}{2}
@@ -127,7 +127,7 @@ De ce fait, si le réseau apprend ces mauvais poids, il sera instantanément pé
 
 
 Dans l'optique de minimiser le temps de calcul,
-differentes fonctions de pertes ont été testées et comparées
+différentes fonctions de pertes ont été testées et comparées
 (moindres carrés et erreur absolue).
-Il a été étudié la variation de la precision du réseau en fonction des differentes fonctions de perte,
+Il a été étudié la variation de la precision du réseau en fonction des différentes fonctions de perte,
 de si les données était triées et de la taille de la base de données.

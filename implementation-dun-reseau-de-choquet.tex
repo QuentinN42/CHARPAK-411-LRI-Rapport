@@ -1,6 +1,6 @@
 Nous appellerons ici \emph{réseau de Choquet} un réseau de neurones ayant une architecture
-adaptée a la regression d'une intégrale de Choquet.
-Comme vus précédement (\ref{subsec:intégrales-de-Choquet}),
+adaptée a la régression d'une intégrale de Choquet.
+Comme vu précédemment (\ref{subsec:intégrales-de-Choquet}),
 une fonction de Choquet a une architecture complexe.
 Voici l'intégrale de Choquet entièrement développée pour un vecteur d'entrée taille $3$:
 \begin{align*}
@@ -61,13 +61,13 @@ Et plus généralement $n^2$ pour un vecteur de taille $n$.
 {
 Prenons un vecteur de taille $n$,
 Le but est d'énumerer le nombre de neurones utiles a l'équation\ (\ref{eq:Choquet}).
-Le resultat est le suivant :
+Le résultat est le suivant :
 \begin{equation}
     n + \dbinom{n}{2} + \dbinom{n}{2} = n + 2 \times \frac{n(n-1)}{2} = n^2
 \end{equation}
 }
 
-Il faut donc créer un vecteur d'entrée à partir une base de données d'aprentissage.
+Il faut donc créer un vecteur d'entrée à partir une base de données d'apprentissage.
 Cela se fait simplement en concaténant le vecteur $X$ avec les elements pris deux à deux passés
 dans les fonctions min et max.\\
 

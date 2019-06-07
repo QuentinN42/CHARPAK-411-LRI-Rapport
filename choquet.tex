@@ -9,14 +9,14 @@ Ces personnes ne connaissent absolument rien en informatique.
 La seule chose qu'ils veulent est une note, plus elle est élevée, plus l'ordinateur est performant.
 Essayons de faire un algorithme assez simple pour résoudre ce problème :
 Chaque composant se voit attribué une note (en fonction de la puissance, la qualité de fabrication\ldots),
-cette note est nomée \textit{l'utilité} du composant.
+cette note est nommée \textit{l'utilité} du composant.
 Une fois toutes les utilités étudiées, un poids est associé à chaque famille de composants
 (\textsc{ram}, processeur, carte mère\ldots).
 Enfin la somme des utilités fois poids pour tous les composant permet d'obtenir cette note.\\
 De ce fait, si un ordinateur a de meilleurs composant ou plus de puissance, sa note sera supérieure.\\
 
 
-Ce modèle parait raisonnable dans la plupart des cas, mais il est extrêmement mauvais dans les cas extrêmes :
+Ce modèle parait raisonnable dans la plupart des cas, mais il est permettra mauvais dans les cas extrêmes :
 Supposons qu'un constructeur peu scrupuleux propose un ordinateur assez étrange :
 Le processeur le moins cher du marché (assez mauvais) mais énormément de \textsc{ram}, par exemple $128$Go.
 Ce classement le placera forcément en haut de la liste,
@@ -33,7 +33,7 @@ Mais pour des raisons de temps de calcul, ces interactions se sont limitées à 
 En effet, la taille du calcul évolue exponentiellement avec les interactions.\\
 
 
-Voici donc la fonction qui vas être approximée :
+Voici donc la fonction qui va être approximée :
 \begin{equation}
     \label{eq:Choquet}
     C(X)  =
