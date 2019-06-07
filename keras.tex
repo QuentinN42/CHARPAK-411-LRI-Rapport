@@ -1,5 +1,5 @@
-La librairie Keras est une interface Python/TensorFlow\cite{tf} permetant de manipuler des réseaux de neurones.
-Ici, seul les fonctionnalitées principales seront étudiées,
+La librairie Keras est une interface Python/TensorFlow\cite{tf} permettant de manipuler des réseaux de neurones.
+Ici, seul les fonctionnalités principales seront étudiées,
 a savoir
 création d'un réseau simple,
 regression par \sgd\
@@ -29,30 +29,30 @@ Avec :
 \vspace{-12pt}
 
 
-Pour créer ce réseau et lui faire apprendre la fonction precedement citée,
-le code suivant est nescessaire :
+Pour créer ce réseau et lui faire apprendre la fonction précédement citée,
+le code suivant est néscessaire :
 \lstinputlisting[language=Python]{code/reseau1.py}
 
 
-En executant ce code une fois, on obtient:
+En exécutant ce code une fois, le résultat suivant est obtenu :
 \begin{lstlisting}
 w0 : 0.19988934695720673
 w1 : 0.8001111745834351
 \end{lstlisting}
 
-Comme on peut le voir ci-dessus, les résultats obtenus sont proches de ceux attendus ($0.2$ et $0.8$).
+Comme il peut être remarqué ci-dessus, les résultats obtenus sont proches de ceux attendus ($0.2$ et $0.8$).
 La syntaxe de la librairie keras est cependant assez lourde.
-Une librairie à donc été codée pour simplifier son utilisation.
-Elle pourra être appelée avec de nombreux paramtres qui seront abordés dans les parties suivantes.\\
+Une librairie a donc été codée pour simplifier son utilisation.
+Elle pourra être appelée avec de nombreux paramètres qui seront abordés dans les parties suivantes.\\
 
 
-Pour tester la robustesse de cet apprentissage, une fonction avec perturbations à été étudiée :
-Une fonction simple à été générée comme precedement, il y a été ajouté une perturbation random equiprobable.
-L’erreur d’apprentissage en fonction de la valeur de cette perturbation à alors été étudiée.\\
+Pour tester la robustesse de cet apprentissage, une fonction avec perturbations a été étudiée :
+Une fonction simple a été générée comme précédement, il y a été ajouté une perturbation aléatoire équiprobable.
+L’erreur d’apprentissage en fonction de cette valeur a donc été étudiée.\\
 
 
-\paragraph{Un probleme se pose :}
-Prennons l'équation\ (\ref{eq:choquet}) avec, par exemple, un vecteur de taille $2$ :
+\paragraph{Un problème se pose :}
+Prenons l'équation\ (\ref{eq:Choquet}) avec, par exemple, un vecteur de taille $2$ :
 \begin{align*}
     C_n (X)
     & =
@@ -68,12 +68,12 @@ Prennons l'équation\ (\ref{eq:choquet}) avec, par exemple, un vecteur de taille
         w_1.x_1 + w_2.x_2 + w_M.\max(x_1,x_2) + w_m.\min(x_1,x_2)
     &\\
 \end{align*}
-Etant donné que les données d'apprentissage sont des réels randoms indépendents entre $0$ et $1$ :
+\'Etant donné que les données d'apprentissage sont des réels aléatoires indépendants entre $0$ et $1$ :
 \begin{equation}
     \label{eq:proba}
     P(x_1 > x_2) = P(x_1 < x_2) = \frac{1}{2}
 \end{equation}
-On obtient donc :
+Donc :
 \begin{align*}
     C_2 (X)
     & =
@@ -84,23 +84,23 @@ On obtient donc :
         w_1.x_1 + w_2.x_2 + w_M.\frac{x_1 + x_2}{2} + w_m.\frac{x_1 + x_2}{2}
     &
 \end{align*}
-On obtient donc :
+Et donc :
 \begin{equation}
     \label{eq:obt}
     \mathbb{E}(C_2 (X)) =
         x_1 \times \Big(w_1 + \frac{w_m + w_M}{2}\Big) + x_2 \times \Big(w_2 + \frac{w_m + w_M}{2}\Big)
 \end{equation}
 Le réseau va donc tenter d'atteindre les valeurs solutions de l'équation
-(\ref{eq:obt}) sans garantir l'exactitude des coeficients.
+(\ref{eq:obt}) sans garantir l'exactitude des coefficients.
 
 \exemle
 {
-Les deux quadruplets de valeurs suivantes vont genrer ce probleme :
+Les deux quadruplés de valeurs suivantes vont genrer ce problème :
 \begin{itemize}
     \item[Les bonne valeurs :] $(0.5, 0.25, 0.1, 0.15)$
     \item[D'autres valeurs :] $(0.28, 0.2, 0.33, 0.37)$
 \end{itemize}
-Si on applique l'équation\ (\ref{eq:obt}) sur cet exemple, on obtient :
+Si l'équation\ (\ref{eq:obt}) est appliquée sur cet exemple, le résultat suivant est obtenu :
 \begin{table}[H]
     \centering
     \begin{tabular}{|l|l|l|}
@@ -112,22 +112,22 @@ Si on applique l'équation\ (\ref{eq:obt}) sur cet exemple, on obtient :
     \label{tab:pb_tab}
     \caption{Valeurs retournées par les réseaux}
 \end{table}
-Les resultats du tableau precedent sont similaires :
-en moyenne, le réseau ne les differencieras pas.
-Il va donc apprendre a de mauvaises valeurs
+Les résultats du tableau précédent sont similaires :
+en moyenne, le réseau ne les différenciera pas.
+Il va donc apprendre a de mauvaises valeurs,
 car en moyenne, le réseau à meilleurs résultats qu'avec des poids aléatoires.
 C'est un minimum local de la fonction de perte.
 }
 
 
-Pour résoudre ce probleme, il faut ne pas satisfaire l'equation (\ref{eq:proba})
-pour suprimer l'équation (\ref{eq:obt}) et donc tirer un learning
+Pour résoudre ce problème, il faut ne pas satisfaire l'équation (\ref{eq:proba})
+pour supprimer l'équation (\ref{eq:obt}) et donc tirer un learning
 set statistiquement différent du testing set.
-De ce fait, si le réseau apprend ces mauvais poids, il serat instantanément pénalisé par le testing set.\\
+De ce fait, si le réseau apprend ces mauvais poids, il sera instantanément pénalisé par le testing set.\\
 
 
 Dans l'optique de minimiser le temps de calcul,
 differentes fonctions de pertes ont été testées et comparées
 (moindres carrés et erreur absolue).
-Il à été étudié la variation de la precision du réseau en fonction des differentes fonctions de perte,
-de si les données était triées et de la taille de la base de donnée.
+Il a été étudié la variation de la precision du réseau en fonction des differentes fonctions de perte,
+de si les données était triées et de la taille de la base de données.

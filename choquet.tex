@@ -1,41 +1,41 @@
 
-L'integrale de choquet est une intégrale découlant de la théorie de la mesure\cite{artch}.
-Ici on ne parlera que du modele discret.\\
+L'intégrale de Choquet est une intégrale découlant de la théorie de la mesure\cite{artch}.
+Ici modèle discret est utilisé.\\
 
 
 Pour l'expliquer simplement, prenons un exemple :
-Suposons que l'on veuille conseiller des personnes sur l'achat d'ordinateurs.
-Ces personnes de conaissent absolument rien en informatique.
-La seul chose qu'ils veullent est une note, plus elle est élevée, plus l'ordinateur est performant.
-Essayons de faire un algorithme assez simple pour résoudre ce problemme :
-Chaque composant se voit atribué une note (en fonction de la puissance, la qualité de fabrication\ldots),
-on appelle cette note \textit{l'utilité} du composant.
-Une fois toutes les utilitées étudiées, on donne un poid à chaque famille de composants
+Supposons qu'une entreprise veuille conseiller des personnes sur l'achat d'ordinateurs.
+Ces personnes ne connaissent absolument rien en informatique.
+La seule chose qu'ils veulent est une note, plus elle est élevée, plus l'ordinateur est performant.
+Essayons de faire un algorithme assez simple pour résoudre ce problème :
+Chaque composant se voit attribué une note (en fonction de la puissance, la qualité de fabrication\ldots),
+cette note est nomée \textit{l'utilité} du composant.
+Une fois toutes les utilités étudiées, un poids est associé à chaque famille de composants
 (\textsc{ram}, processeur, carte mère\ldots).
-Enfin on fait la somme de utilité fois poid pour tout les composant.\\
-De ce fait, si un ordinateur a de meilleurs composant, plus de puissance, ect, sa note sera superieure.\\
+Enfin la somme des utilités fois poids pour tous les composant permet d'obtenir cette note.\\
+De ce fait, si un ordinateur a de meilleurs composant ou plus de puissance, sa note sera supérieure.\\
 
 
-Ce modèle parait raisonable dans la plupart des cas mais il est extraimement mauvais dans les cas extremes :
-Suposons qu'un constructeur peu scrupuleux propose un ordinateur assez étrange :
+Ce modèle parait raisonnable dans la plupart des cas, mais il est extrêmement mauvais dans les cas extrêmes :
+Supposons qu'un constructeur peu scrupuleux propose un ordinateur assez étrange :
 Le processeur le moins cher du marché (assez mauvais) mais énormément de \textsc{ram}, par exemple $128$Go.
-Votre classement le placera forcément en haut de la liste, même si vous en conviendrez,
-cet ordinateur est assez inutile\ldots\\
+Ce classement le placera forcément en haut de la liste,
+même si cet ordinateur est assez mauvais\ldots\\
 
 
 Il faudrait donc trouver un autre système modélisant les interactions entre les composants.
-Ce modèle est exactement celui sur lequel j'ai travaillé durant mon stage: \textit{les intégrales de choquet}.
-En plus de donner un poid aux utilité,
-un poid est donné aux interactions des utilitées par le biais des fonctions min et max.
-Ces intéractions peuvent être faites deux à deux, trois à trois voir à plus.
-Mais pour des raison de temps de calcul, ces interactions se sont limités à l'interactions simple
+Ce modèle est exactement celui sur lequel j'ai travaillé durant mon stage: \textit{les intégrales de Choquet}.
+En plus de donner un poids aux utilités,
+un poids est donné aux interactions des utilités par le biais des fonctions min et max.
+Ces interactions peuvent être faites deux à deux, trois à trois voir à plus.
+Mais pour des raisons de temps de calcul, ces interactions se sont limitées à l'interaction simple
 (deux à deux) durant ce travail.
 En effet, la taille du calcul évolue exponentiellement avec les interactions.\\
 
 
-Voici donc la fonction que l'on vas vouloir aproximer :
+Voici donc la fonction qui vas être approximée :
 \begin{equation}
-    \label{eq:choquet}
+    \label{eq:Choquet}
     C(X)  =
     \sum_{i=1}^{n}
         w_i \times x_i +
@@ -44,4 +44,4 @@ Voici donc la fonction que l'on vas vouloir aproximer :
         w_{M\,ij} \times \max(x_i,x_j) + w_{m\,ij} \times \min(x_i,x_j)
     \Big)
 \end{equation}
-Avec $X$ le vecteur des utilitées et $W$, $W_m$ et $W_M$ les vecteurs des poids.
+Avec $X$ le vecteur des utilités et $W$, $W_m$ et $W_M$ les vecteurs des poids.

@@ -35,7 +35,7 @@ Elles s'agencent de la manière suivante :
 Un neurone prend des informations en entrée, de manière générale un nombre réel entre 0 et 1
 mais d'autres objets sont envisageables (image, pixel, son\ldots).
 Il n'y a pas de nombre minimum ou maximums
-(on pourait imaginer un neurone ne prenant pas d'entrée, ou au contraire en prenant une infinité),
+(il peut être conçu un neurone ne prenant pas d'entrée, ou au contraire en prenant une infinité),
 ni de contrainte sur les differents objets.
 \exemle
 {
@@ -47,10 +47,10 @@ Un neurone prenant :
 
 \end{itemize}
 }
-On note le vecteur entrée $X$ et chacun de ses element $x_1 \ldots x_i \ldots x_n$.
+Le vecteur entrée est noté $X$ et chacun de ses element $x_1 \ldots x_i \ldots x_n$.
 
 \paragraph{La fonction interne :}
-Le réseau vas alors faire un calcul à partir des entrées et de poids,
+Le réseau vas donc faire un calcul à partir des entrées et de poids,
 des valleurs définies pour chaque neurones qui peuvent varier durant l'apprentissage. \\
 Le vecteur poids se note $W$ et chacun de ses element $w_1 \ldots w_i \ldots w_n$.
 
@@ -64,17 +64,17 @@ Le vecteur poids se note $W$ et chacun de ses element $w_1 \ldots w_i \ldots w_n
             (avec $x_1$ une sequence \textsc{adn})
 \end{itemize}
 }
-On note la fonction interne $f(X)$ (avec $X$ le vecteur d'entrée).
+La fonction interne est noté $f(X)$ (avec $X$ le vecteur d'entrée).
 
 \paragraph{La fonction d'activation :}
-Comme vus precedement, ces neurones sont mis en résau,
+Comme vus précédement, ces neurones sont mis en réseau,
 il est donc interessant d'avoir une norme pour l'entré et la sortie
 afin de pouvoir lier des neurones entre eux sans distinctions. \\
 La norme qui a été choisie est, comme précedement cité, un réel entre $0$ et $1$.
 
 
 Or, il peut être remarqué que les fonctions ci dessus ne renvoient pas forcement des nombre entre $0$ et $1$\ldots
-On utilise donc la fonction d'activation afin de normaliser les sorties.
+La fonction d'activation est utilisée pour normaliser les sorties.
 \exemle
 {
 \begin{itemize}
@@ -83,38 +83,38 @@ On utilise donc la fonction d'activation afin de normaliser les sorties.
     \item[Pour une fonction dans $[0, 1 \rbrack$ :] fonction identité
 \end{itemize}
 }
-On note la fonction d'activation $f_{act}$.
+La fonction d'activation est noté $f_{act}$.
 
 
 \paragraph{Pour resumer :}
 Un neurone prend \textit{des entrées},
 les passe dans sa \textit{fonction principale},
 puis le résultat dans la \textit{fonction d'activation}. \\
-Formellement, on obtient l'équation suivante :
+Formellement, l'équation suivante est obtenue :
 \begin{equation}
     f_{act}(f(X))
 \end{equation}
 
 
-Le tout dépendant bien évidement du vecteur $W$ que l'on peut faire varier afin de modifier la fonction du neurone.
+Le tout dépendant bien évidement du vecteur $W$ qui varier afin de modifier la fonction du neurone.
 \exemle
 {
 Prenons un neurone avec deux entrées : $x_1$ et $x_2$, \\
 de fonction principale $f(X) = X.W$ \\
 et de fonction d'activation identité. \\
-Si on a $W = (1, 1)$, ce neurone fait une somme.\\
+Si $W = (1, 1)$, ce neurone fait une somme.\\
 Mais si $W = (0.5, 0.5)$ ce neurone fait une moyenne.
 }
 
 
 \subsubsection{Un réseau}
 Une fois que nous avons de nombreux neurones faisant chacuns des actions bien spécifiques,
-on voudrais les relier afin de gérer des comportements plus complexes
+il pourait être interessant de les relier afin de gérer des comportements plus complexes
 comme faire une somme de moyenne (ou controller un drone, prédire les mouvements boursiers\ldots).
 
-Il sufit alors de relier les neurones entre eux, de maniere générale de manière linéaire de gauche à droite.
+Il sufit donc de relier les neurones entre eux, de maniere générale de manière linéaire de gauche à droite.
 De nombreuse manière de relier les neurones existent (recurent, convolution\ldots),
-ici on ne parlera que de la connexion dite "Dense" ou "fully connected" :
+ici serat abordé en detail que de la connexion dite \emph{Dense} ou \emph{fully connected} :
 le réseau se découpe en $n$ couches de neurones,
 chacunes composée de neurones dont les entrées sont les sorties des neurones le la couche précédente.
 \begin{figure}[H]
@@ -124,14 +124,14 @@ chacunes composée de neurones dont les entrées sont les sorties des neurones l
     {\tiny \url{techburst.io/experiment-finding-objects-with-a-neural-network-caa4cec7d2c4}}
 	\label{fig:simple-dense}
 \end{figure}
-Comme on peut le voir sur la figure,
+La \textsc{Figue}\ \ref{fig:simple-dense} représente un réseau fully connected :
 les neurones les plus à gauches sont les neurones d'entrée (capteurs)
 et ceux les plus à droite ceux de sortie (controle des moteurs, affichage d'une note\ldots).
 Tout les autres neurones sont "cachés", il n'intéragissent pas directement avec l'environement.
 
 
 \subsubsection{L'apprentissage}
-Jusqu'ici on a vus comment creer une architecture modulable permetant de générer une fonction à paramètres.
+Jusqu'ici il a été abordé la création d'une architecture modulable permetant de générer une fonction à paramètres.
 Mais une question se pose toujours :\\
 Quel est l'intéret ?
 Pourquoi ne pas directement écrire la fonction "en dur" ?\\
@@ -140,9 +140,8 @@ Ce concept est ce qui fait que les réseaux de neurones sont les architectures f
 des data scientists et des chercheurs en \textsc{ia}.\\
 
 
-L'idée est assez simple, on recherche une fonction générale dont on ne connais que certaines valeurs discretes.
-On vas commencer par définir une fonction nomé "loss function"
-qui décrit la précision du réseau actuel :
+L'idée est assez simple, une fonction générale est cherché à partir de certaines valeurs discretes.
+Posons une fonction nomé "loss function" qui décrit la précision du réseau actuel :
 elle prend en entrée deux valeurs : la valeur théorique et la valeur obtenue.
 elle retourne un réel positif, plus il est faible, plus le réseau est proche de la fonction théorique.
 \exemle
@@ -152,13 +151,13 @@ elle retourne un réel positif, plus il est faible, plus le réseau est proche d
     loss(exp, obt) = &\ (exp - obt)^2
 \end{align*}
 }
-Le probleme de regression se résume alors à minimiser la fonction de prete,
+Le problème de regression se résume donc à minimiser la fonction de prete,
 c'est ici que la descente de gradient stochastique fait son entrée :
 
 
 \paragraph{Descente de gradient :}
-Pour minimiser loss, on aimerai bien descendre sa pente, c'est à dire dériver suivant les diférentes variables
-\footnote{\textsc{NB :} Ici les variables sur lesquels on intervient sont les $w_i$ (pas les $x_i$).},
+Pour minimiser loss, il serait bien de descendre sa pente, c'est à dire dériver suivant les diférentes variables
+\footnote{\textsc{NB :} Ici les variables suivant lesquelles la dérivée se fait sont les $w_i$ (pas les $x_i$).},
 en déduire l'orientation de la pente, et la descendre.
 Étant donné que de manière générale, il y a plusieurs variables, la dérivée se transforme en gradient.
 Des applications linéaires sont privilégiées dans les fonctions des neurones,
@@ -166,15 +165,15 @@ afin de pouvoir calculer facilement les gradients.\\
 
 
 \paragraph{Stochastique :}
-On a donc expliqué d'ou vient la descente de gradient, mais que veut dire stochastique ?
+Il a été expliqué d'ou vient la descente de gradient, mais que veut dire stochastique ?
 Ce mot est synonyme de hasard.
 En effet le temps de calcul du gradient est exponentiel vus que chaque neurones est relié a $n$ neurones,
 eux même reliés à $n$ autres neurones ect\ldots\\
-Alors lorsque le réseau est grand
+Donc lorsque le réseau est grand
 (un réseau peut facillement atteindre le million de neurones voir même des milliards\cite{i3espectrum})
 il est inimaginable de calculer la totalité du gradient (les calculs peuvent parfois depasser
 plusieurs fois la durée de l'univers\ldots),
-on utilise alors le gradient stochastique.\\
+le gradient stochastique est donc utiliser pour rendre le calcul réalisable.\\
 
 
 Cette descente de gradient est bien plus rapide, il est donc possible de l'iterer de nombreuses fois
@@ -182,4 +181,4 @@ pour tenter de minimiser la fonction de perte.
 L'espaces des solutions étant rarement idéal
 (rarement une "cuvette" mais constitué de "bosses" et de "trous" chaotiques)
 il n'est pas obligatoire d'arriver à atteindre le minimum global mais au moins minimum local sera atteind.
-Avec plusieurs apprentissages on peut alors approximer très efficacement quasiment toutes les fonctions.
+Avec plusieurs apprentissages il peut donc être approximé très efficacement quasiment toutes les fonctions.

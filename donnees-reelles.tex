@@ -1,9 +1,9 @@
-Une base de donnée disponible en ligne sur \textsc{Kaggle} à aussi été étudiée\cite{kaggle}.
-La base de donnée traite des prix de maisons vendues entre $2014$ et $2015$
+Une base de données disponible en ligne sur \textsc{Kaggle} a aussi été étudiée\cite{kaggle}.
+La base de données traite des prix de maisons vendues entre $2014$ et $2015$
 dans le King Country, \textsc{wa}, \textsc{usa}.\\
 
 
-Pour rechercher les fonctions d'utilitées, une liste de fonctions possible à été dressée:
+Pour rechercher les fonctions d'utilités, une liste de fonctions possible a été dressée:
 \begin{itemize}
     \item Polynomes de degrés allant de $1$ à $3$
     \item Exponentiel
@@ -14,11 +14,11 @@ Pour rechercher les fonctions d'utilitées, une liste de fonctions possible à �
     \item Gaussienne
 \end{itemize}
 Une fois toutes ces fonctions codées, chaque plage de données à essayé d'être regressée grâce à celles ci.
-La fonction obtenant le meilleur $R^2$ à été conservé si celui ci était superieur à $0.3$ afin de retirer
+La fonction obtenant le meilleur $R^2$ a été conservé si celui ci était superieur à $0.3$ afin de retirer
 les données n'agissant pas sur le prix.\\
 
 
-En utilisant les fonctions d'utilitées trouvées precedement, une réseau de choquet à été créé puis entrainé
+En utilisant les fonctions d'utilités trouvées précédement, une réseau de Choquet a été créé puis entrainé
 sur cette base de données.
 L'entrainement est cependant long, environ $8$h sur cluster de calcul du \lri.
 Ce temps à pu être réduit grace à de l'optimisation et de la programmation parallèle.
