@@ -9,7 +9,7 @@ Ces personnes ne connaissent absolument rien en informatique.
 La seule chose qu'ils veulent est une note, plus elle est élevée, plus l'ordinateur est performant.
 Essayons de faire un algorithme assez simple pour résoudre ce problème :
 Chaque composant se voit attribué une note (en fonction de la puissance, la qualité de fabrication\ldots),
-cette note est nommée \textit{l'utilité} du composant.
+cette note est nommée \textit{l'utilité} du composants.
 Une fois toutes les utilités étudiées, un poids est associé à chaque famille de composants
 (\textsc{ram}, processeur, carte mère\ldots).
 Enfin la somme des utilités fois poids pour tous les composant permet d'obtenir cette note.\\
@@ -26,14 +26,14 @@ même si cet ordinateur est assez mauvais\ldots\\
 Il faudrait donc trouver un autre système modélisant les interactions entre les composants.
 Ce modèle est exactement celui sur lequel j'ai travaillé durant mon stage: \textit{les intégrales de Choquet}.
 En plus de donner un poids aux utilités,
-un poids est donné aux interactions des utilités par le biais des fonctions min et max.
+un poids est donné aux interactions des utilités par le biais des fonctions $min$ et $max$.
 Ces interactions peuvent être faites deux à deux, trois à trois voir à plus.
 Mais pour des raisons de temps de calcul, ces interactions se sont limitées à l'interaction simple
 (deux à deux) durant ce travail.
 En effet, la taille du calcul évolue exponentiellement avec les interactions.\\
 
 
-Voici donc la fonction qui va être approximée :
+Voici donc la fonction qui va être approximée durant cette étude :
 \begin{equation}
     \label{eq:Choquet}
     C(X)  =
@@ -44,4 +44,6 @@ Voici donc la fonction qui va être approximée :
         w_{M\,ij} \times \max(x_i,x_j) + w_{m\,ij} \times \min(x_i,x_j)
     \Big)
 \end{equation}
-Avec $X$ le vecteur des utilités et $W$, $W_m$ et $W_M$ les vecteurs des poids.
+Avec $X$ le vecteur des utilités et $W$ le vecteur des poids sans intéraction,
+$W_m$ le vecteur des poids des intéraction $min$
+et $W_M$ le vecteur des poids des intéraction $max$.
