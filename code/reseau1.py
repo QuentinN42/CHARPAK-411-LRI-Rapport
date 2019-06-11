@@ -15,7 +15,7 @@ questions = np.array([np.array([random(), random()])
 reponses  = np.array([f(q) for q in questions])
 
 sgd = optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
-neurones = layers.Dense(1, activation=act, input_dim=n_input, use_bias=False)
+neurones = layers.Dense(1, activation=act, input_dim=n_input, use_bias=False)  # Creation des neurones
 model = Sequential()            # On cree un reseau
 model.add(neurones)             # On lui ajoute des neurones
 model.compile(optimizer=sgd,    # On compile le tout

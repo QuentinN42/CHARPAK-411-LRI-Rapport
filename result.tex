@@ -1,5 +1,19 @@
 
-\subsection{Moyenne :}\label{subsec:moy}
+
+Dans cette partie vont être présentés les résultats en deux sections :
+premièrement les tests sur des données générées artificiellement
+puis une seconde section sera dédiée aux résultats obtenus sur la base de données en ligne.
+
+
+\subsection{Données artificielles :}\label{subsec:artif}
+
+
+Dans cette partie, un exemple simple d'apprentissage sera étudié.
+Ensuite, la résistance aux perturbations sera observée.
+Enfin une étude des performances de cette méthode d'apprentissage sera discutée.
+
+
+\subsubsection{Moyenne :}\label{subsubsec:moy}
 Il a été demandé au réseau de régresser une fonction moyenne à deux dimensions :
 Les poids qui sont censés être obtenus sont les suivants :
 \begin{equation}
@@ -10,12 +24,12 @@ Les poids qui sont censés être obtenus sont les suivants :
 Le graphique à trois dimensions des valeurs attendues (gauche) et obtenues (droite) est le suivant :
 \begin{figure}[H]
     \center
-    \includegraphics[height=\petit]{pict/moy/expected}
-    \includegraphics[height=\petit]{pict/moy/result}
+    \includegraphics[width=0.49\columnwidth]{pict/moy/expected}
+    \includegraphics[width=0.49\columnwidth]{pict/moy/result}
 	\caption{Apprentissage de la moyenne}
     \vspace{-10pt}
     \begin{center}
-        \tiny
+        \footnotesize
         \textit{
         Les axes $x$ et $y$ correspondent respectivement à $x_1$ et $x_2$.
         La valeur en tout point de la fonction est représentée par un gradient de couleur
@@ -25,8 +39,8 @@ Le graphique à trois dimensions des valeurs attendues (gauche) et obtenues (dro
 	\label{fig:moy}
 \end{figure}
 \vspace{-12pt}
-
-Aucune différence n'est visible, en effet les poids associés aux deux noeuds sont les suivants :
+Ici aucune variation n'est observable.
+Les deux gradients sont équivalents, en effet les poids associés aux deux noeuds sont les suivants :
 \begin{equation*}
     w_1 = 0.50000010
     \;\;\;\;\;\;\;\;\;
@@ -35,39 +49,7 @@ Aucune différence n'est visible, en effet les poids associés aux deux noeuds s
 Aux approximations processeur, les poids sont les mêmes que dans (\ref{eq:moy}).
 
 
-\subsubsection{Étude de l'apprentissage :}\label{subsec:app}
-Théoriquement, l'écart type de l'erreur d'apprentissage devrais
-diminuer quand la taille de la base de données augmente.
-Pour tester cette hypothèse, des graphiques ont été générés avec
-différentes tailles de base de données :
-
-\begin{figure}[H]
-    \center
-    \includegraphics[height=\moyen]{pict/appfd.png}
-	\caption{Écart type de l'apprentissage en fonction de la taille de la base de données}
-	\label{fig:etfdata2graph}
-\end{figure}
-\vspace{-5pt}
-Ici, l'erreur d'apprentissage s'amoindrit avec l'augmentation de la taille de la base de données.
-Cette évolution s'arête vers les $1000$ données, dépassé ce cap, l'écart type stagne.
-
-
-Un graphique a taille de base de données fixée de l'écart type de l'apprentissage
-en fonction du nombre d'apprensitssages réalisés par le réseau.
-Cette technique permet de ne pas stagner dans un minimum local.
-
-\begin{figure}[H]
-    \center
-    \includegraphics[height=\moyen]{pict/appfn.png}
-	\caption{écart type de l'apprentissage moyen en fonction du nombre d'apprensitssages}
-	\label{fig:etfngraph1}
-\end{figure}
-\vspace{-5pt}
-Ici, contrairement à la \textsc{Figure}\ \ref{fig:etfdata2graph}, la moyenne ne varie pas significativement mais l'écart type diminue drastiquement.
-Ce paramètre combiné au précédent permettra d'augmenter la précision du réseau dans la partie\ \ref{subsec:real}.
-
-
-\subsection{Étude de la resistance aux perturbations}\label{subsec:random}
+\subsubsection{Étude de la resistance aux perturbations}\label{subsubsec:random}
 Le réseau essaye de régresser une fonction toute simple:
 \begin{equation}
     \frac{1}{3} \times x + \frac{2}{3} \times y
@@ -90,45 +72,101 @@ Cet exemple illustre très bien l'extrême robustesse des réseaux de neurones a
 Ce réseau n'auras donc pas trop de mal à apprendre sur des données réelles (souvent très ébruitées).
 
 
-\subsection{Base de données réelle}\label{subsec:real}
-Les données ont été passées dans un réseau de neurones sans traitement specifique.
-Voici le résultat de l'apprentissage:
+\subsubsection{Étude de l'apprentissage :}\label{subsubsec:app}
+Théoriquement, l'écart type de l'erreur d'apprentissage devrais
+diminuer quand la taille de la base de données augmente.
+Pour tester cette hypothèse, de nombreux apprentissages ont été réalisées avec
+différentes tailles de base de données.
+Les résultats obtenus sont présentés sur le graphique suivant.
+\begin{figure}[H]
+    \center
+    \includegraphics[height=\moyen]{pict/appfd.png}
+	\caption{Écart type de l'apprentissage en fonction de la taille de la base de données avec écart type}
+	\label{fig:etfdata2graph}
+\end{figure}
+\vspace{-5pt}
+Ici, l'erreur d'apprentissage s'amoindrit avec l'augmentation de la taille de la base de données.
+Cette évolution s'arête vers les $1000$ données, dépassé ce cap, l'écart type stagne.
+
+
+Un graphique a taille de base de données fixée de l'écart type de l'apprentissage
+en fonction du nombre d'apprensitssages réalisés par le réseau.
+Cette technique permet de ne pas stagner dans un minimum local.
 
 \begin{figure}[H]
     \center
-    \includegraphics[height=\petit]{pict/real/res1.png}
-    \includegraphics[height=\petit]{pict/real/learn1.png}
+    \includegraphics[height=\moyen]{pict/appfn.png}
+	\caption{écart type de l'apprentissage moyen en fonction du nombre d'apprensitssages}
+	\label{fig:etfngraph1}
+\end{figure}
+\vspace{-5pt}
+Ici, contrairement à la \textsc{Figure}\ \ref{fig:etfdata2graph}, la moyenne ne varie pas significativement mais l'écart type diminue drastiquement.
+Ce paramètre combiné au précédent permettra d'augmenter la précision du réseau dans la partie\ \ref{subsec:real}.
+
+
+\subsection{Base de données réelle}\label{subsec:real}
+
+Afin d'observer l'efficacité des différentes étapes de ce travail,
+à chaque étape, la courbe d'apprentissage ainsi que les résultats moyens
+(plus écart type) pour cent apprentissages ont été tracées.
+
+\subsubsection{Réseau simple}\label{subsubsec:real-simple}
+Les données ont tout d'abord été passées dans un réseau de neurones sans traitement spécifique.
+Voici le résultat de l'apprentissage :
+\begin{figure}[H]
+    \center
+    \includegraphics[width=0.49\columnwidth]{pict/real/raw/res.png}
+    \includegraphics[width=0.49\columnwidth]{pict/real/raw/learn.png}
 	\caption{Apprentissage sur les données réelles}
 	\label{fig:def_100_100}
 \end{figure}
-L'apprentissage est ici totalement cahotique.
+L'apprentissage est ici totalement chaotique.
 Ce résultat était attendu étant donné que les fonctions d'utilité n'ont pas été
 calculées et que le prix d'une maison n'est pas un calcul simple.
-Ici, il est impossible de calculer le prix avec un simple $Surface \times Prix/m^3$.\\
+Ici, il est impossible de calculer le prix avec une formule de type $Surface \times Prix/m^3$.\\
 
 
+\subsubsection{Fonctions d'utilités}\label{subsubsec:real-ut}
 Les fonctions d'utilités ont donc été calcullées.
 Voici le résultat :
 \begin{figure}[H]
     \center
-    \includegraphics[height=\petit]{pict/real/resut.png}
-    \includegraphics[height=\petit]{pict/real/learnut.png}
+    \includegraphics[width=0.49\columnwidth]{pict/real/ut/bath.png}
+    \includegraphics[width=0.49\columnwidth]{pict/real/ut/living.png}
+    \includegraphics[width=0.49\columnwidth]{pict/real/ut/grd.png}
+    \includegraphics[width=0.49\columnwidth]{pict/real/ut/above.png}
+	\caption{Différentes fonctions apprises}
+	\label{fig:ut_f}
+\end{figure}
+
+
+Comme il peut être observé dans la \textsc{Figure}\ \ref{fig:ut_f}, seul quatre fonctions d'utilité ont pu être trouvées.
+Un réseau simple a donc été entrainé à partir de celles-ci.
+Le résultat est le suivant :
+\begin{figure}[H]
+    \center
+    \includegraphics[width=0.49\columnwidth]{pict/real/ut/res.png}
+    \includegraphics[width=0.49\columnwidth]{pict/real/ut/learn.png}
 	\caption{Apprentissage sur les données réelles}
 	\label{fig:ut1_100_100}
 \end{figure}
+
+
 Il peut être remarqué peut que l'apprentissage est bien plus précis.
 En effet, l'espace des poids étant bien plus restreint,
 le réseau explore cet espace bien plus rapidement.
 
 
-Les résultats sont donc passés dans un réseau de Choquet afin d'en calculer tout ces coefficients :
+\subsubsection{Réseau de choquet}\label{subsubsec:real-ch}
+Les fonctions d'utilitées sont donc passés dans un réseau de Choquet afin d'en calculer tout ces coefficients :
 \begin{figure}[H]
     \center
-    \includegraphics[height=\moyen]{pict/real/netch.png}
-    \includegraphics[height=\petit]{pict/real/learnch.png}
+    \includegraphics[width=0.49\columnwidth]{pict/real/ch/net.png}
+    \includegraphics[width=0.49\columnwidth]{pict/real/ch/learn.png}
 	\caption{Apprentissage avec le réseau de Choquet}
 	\label{fig:real-Choquet}
 \end{figure}
+
 
 En observant la \textsc{Figure}\ \ref{fig:real-Choquet}, il est visible que seul deux paramètres
 ont des valeurs significativement différentes de $0$.
@@ -141,3 +179,7 @@ Ces paramètres sont les suivants :
 \end{itemize}
 
 
+On peut cependant observer que l'écart type sur l'erreur est plus important
+que dans la \textsc{Figure}\ \ref{fig:ut1_100_100}.
+De plus, la fonction de perte atteint la valeur $0$.
+Ces deux notions combinées sont caractéristiques d'overfitting.

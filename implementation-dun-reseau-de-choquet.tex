@@ -13,7 +13,7 @@ Voici l'intégrale de Choquet entièrement développée pour un vecteur d'entré
     w_{m1} \times \min(x_1, x_2) + w_{m2} \times \min(x_1, x_3) + w_{m3} \times \min(x_2, x_3) \\
     \color{black}
     & +
-    \color{green}
+    \color{mygreen}
     w_{M1} \times \max(x_1, x_2) + w_{M2} \times \max(x_1, x_3) + w_{M3} \times \max(x_2, x_3)
 \end{align*}
 Voici l'architecture d'un réseau de Choquet entièrement générée par un réseau de neurones :
@@ -25,7 +25,7 @@ Voici l'architecture d'un réseau de Choquet entièrement générée par un rés
 	\label{fig:chnet1}
     \vspace{-10pt}
     \begin{center}
-        \tiny
+        \footnotesize
         \textit{
         En bleu, des neurone de fonction principale $\min(X)$. \\
         En vert, des neurone de fonction principale $\max(X)$.
@@ -39,6 +39,8 @@ Ici, trois problèmes non triviaux se posent (\textit{cf.}\ \ref{subsec:réseau-
     \item Les neurones ne sont pas reliés en mode Dense mais en convolution.
     \item Certains neurones passent des informations en sautant une couche de neurones.
 \end{itemize}
+Comme vus dans la partie\ \ref{subsec:réseau-de-neurones}, cette architecture est assez complexe.
+Il serait donc pratique de trouver une architecture plus simple afin de gagner du temps en implémentation et en exécution.
 
 
 \paragraph{Une autre piste à donc été envisagée :}
@@ -54,10 +56,10 @@ celui de droite fait le produit scalaire avec un vecteur poids.
 \end{figure}
 \vspace{-12pt}
 Ce réseau est bien plus simple à générer : c'est un réseau \emph{Dense} de taille $9$ en entrée.
-Et plus généralement $n^2$ pour un vecteur de taille $n$.
+Et plus généralement $n^2$ pour un vecteur de taille $n$ en entrée.
 
 
-\rbox{Démonstation :}
+\rbox{Observation :}
 {
 Prenons un vecteur de taille $n$,
 Le but est d'énumerer le nombre de neurones utiles a l'équation\ (\ref{eq:Choquet}).

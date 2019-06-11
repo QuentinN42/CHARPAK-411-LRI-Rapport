@@ -14,8 +14,10 @@ Pour rechercher les fonctions d'utilités, une liste de fonctions possible a ét
     \item Gaussienne
 \end{itemize}
 Une fois toutes ces fonctions codées, chaque plage de données à essayé d'être régressée grâce à celles-ci.
-La fonction obtenant le meilleur $R^2$ a été conservé si celui-ci était supérieur à $0.3$ afin de retirer
-les données n'agissant pas sur le prix.\\
+L'efficacité de la regression a été mesurée grâce aux moindres carrés (mean squared error ou $R^2$).
+La fonction obtenant le meilleur $R^2$ a été conservé pour chaque pages de données.
+Afin de retirer les données n'agissant pas sur le prix,
+les fonctions d'utilités présentant un $R^2$ inférieur à $0.3$ ont été retirées.\\
 
 
 En utilisant les fonctions d'utilités trouvées précédemment, un réseau de Choquet a été créé puis entrainé

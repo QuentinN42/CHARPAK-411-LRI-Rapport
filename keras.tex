@@ -1,4 +1,4 @@
-La librairie Keras est une interface Python/TensorFlow\cite{tf} permettant de manipuler des réseaux de neurones.
+La librairie \textsc{Keras} est une interface Python/TensorFlow\cite{tf} permettant de manipuler des réseaux de neurones.
 Ici, seul les fonctionnalités principales seront étudiées,
 à savoir
 création d'un réseau simple,
@@ -7,7 +7,7 @@ et évaluation de performances.\\
 
 
 Voici un exemple de réseau de neurone simple (\textsc{Figure}\ \ref{fig:net2})
-qui va tenter d'apprendre l'application linéaire suivante : $f(X) = W.X$.
+qui va tenter d'apprendre l'application linéaire suivante : $f(X) = W\cdot X$.
 Avec :
 \begin{itemize}
     \item[\textbf{$X$ :}] le vecteur d'entrée tel que : $\dim(X) = 2$.
@@ -19,7 +19,7 @@ Avec :
 	\caption{Réseau simple}
     \vspace{-10pt}
     \begin{center}
-        \tiny
+        \footnotesize
         \textit{
         Avec $w_1 = 0.2$ et $w_2 = 0.8$.
         }
@@ -41,7 +41,7 @@ w1 : 0.8001111745834351
 \end{lstlisting}
 
 Comme il peut être remarqué ci-dessus, les résultats obtenus sont proches de ceux attendus ($0.2$ et $0.8$).
-La syntaxe de la librairie keras est cependant assez lourde.
+La syntaxe de la librairie \textsc{Keras} est cependant assez lourde.
 Une librairie a donc été codée pour simplifier son utilisation.
 Elle pourra être appelée avec de nombreux paramètres qui seront abordés dans les parties suivantes.\\
 
@@ -52,32 +52,32 @@ L’erreur d’apprentissage en fonction de cette valeur a donc été étudiée.
 
 
 \paragraph{Un problème se pose :}
-Prenons l'équation\ (\ref{eq:Choquet}) avec, par exemple, un vecteur de taille $2$ :
-\begin{align*}
-    C_n (X)
-    & =
+Reprenons l'équation\ (\ref{eq:Choquet}) :
+\begin{equation*}
+    C_n (X) =
         \sum_{i=1}^{n}
                 w_i \times x_i +
             \sum_{i=1}^{n}\sum_{j=i+1}^{n}
             \Big(
                 w_{M\,ij} \times \max(x_i,x_j) + w_{m\,ij} \times \min(x_i,x_j)
             \Big)
-    &\\
+\end{equation*}
+Si on prend un vecteur de taille $n=2$, le résultat suivant est obtenu :
+\begin{equation*}
     C_2 (X)
-    & =
+    =
         w_1.x_1 + w_2.x_2 + w_M.\max(x_1,x_2) + w_m.\min(x_1,x_2)
-    &\\
-\end{align*}
+\end{equation*}
 Étant donné que les données d'apprentissage sont des réels aléatoires indépendants entre $0$ et $1$ :
 \begin{equation}
     \label{eq:proba}
     P(x_1 > x_2) = P(x_1 < x_2) = \frac{1}{2}
 \end{equation}
-Donc :
+Donc en combinant (\ref{eq:Choquet}) et (\ref{eq:proba}):
 \begin{align*}
-    C_2 (X)
+    \mathbb{E}(C_2 (X))
     & =
-        w_1.x_1 + w_2.x_2 + w_M.\max(x_1,x_2) + w_m.\min(x_1,x_2)
+        w_1.x_1 + w_2.x_2 + \mathbb{E}(w_M.\max(x_1,x_2)) + \mathbb{E}(w_m.\min(x_1,x_2))
     &\\
     \mathbb{E}(C_2 (X))
     & =
