@@ -1,28 +1,39 @@
 
-Il faut cependant nuancer les résultats obtenus dans la partie\ \ref{subsec:real}.
-En effet, il se peut que cette base de données soit biaisée,
-il n'est donc pas possible de tirer des conclusions générales à partir de ce cas particulier.
-De plus, toutes les fonctions d'utilités n'ont pas été obtenues.
-Il est possible que certaines fonctions qui ne sont pas présentes dans\ \ref{subsec:données-réelles}\
-soient d'excellentes fonctions d'utilités.
+
+\paragraph{Données artificielles (\ref{subsec:artif}) :\\}
+Durant cette étude, l'efficacité des réseaux de neurones a pu être observée.
+Il n'est plus à démontrer la puissance de généralisation ainsi que la résistance aux perturbations de cette technique.
+De plus, l'influence du nombre d'apprentissages ainsi que du nombre de données disponibles sur la fiabilité des résultats ont pu être étudié.
+Ces résultats démontrent qu'un réseau peut apprendre efficacement même si peu de données lui sont fournies.
+
+
+
+\paragraph{Données réelles (\ref{subsec:real}) :\\}
+Les résultats sur les données réelles ne sont pourtant pas à la hauteur
+de ce que le modèle théorique (\ref{subsec:réseau-de-neurones})
+et que les tests réels (\ref{subsec:artif}) laissait présager.
+En effet, sans traitement particulier, l'apprentissage est totalement chaotique.
+Les fonctions d'utilités permettent d'améliorer l'apprentissage mais
+on observe grâce au réseau de Choquet que les plages de données sélectionnées
+sont des facteurs de confusions impliquant des problèmes d'overfitting.
 
 
 \paragraph{Dévelopement personel :\\}
 Ce stage m'a appris de nombreuses choses sur le monde de la recherche tel
 que la manipulation de modèles mathématiques théoriques et leurs applications
-en informatique fondamentale.\\
+en informatique fondamentale.
 
 
 J'ai aussi pu implémenter mon premier réseau de neurones.
 J'avais déjà des connaissances théoriques mais je
-n'avais jamais eu l'occasion de manipuler ce genre d'objets.\\
+n'avais jamais eu l'occasion de manipuler ce genre d'objets.
 
 
 L'utilisation scientifique de python a aussi été une part très importante de mon stage.
-Des problématiques qui n'avaient jamais été abordées en cours tel que l'optimisation ce sont possées.
+Des problématiques qui n'avaient jamais été abordées en cours tel que l'optimisation se sont posées.
 Les échanges avec les autres stagiaires/thésards ont été très instructifs
 (découverte de nouvelles librairies, bonnes méthodes à adopter\ldots).
-J'ai aussi eut l'opportunité d'utiliser un cluster de calcul du \lri.\\
+J'ai aussi eut l'opportunité d'utiliser un cluster de calcul du \lri.
 
 
 Enfin, durant ce stage, j'ai pu échanger avec des universitaires et des enseignants chercheurs
@@ -30,3 +41,17 @@ sur ma poursuite d'études.
 J'ai par exemple pu découvrir les doctorats \textsc{CIFRE}\cite{cifre}:
 Ce sont des doctorats en partenariat avec une entreprise c'est donc l'une des meilleures
 orientations pour faire de la recherche & développement au sein d'une entreprise.
+
+
+\paragraph{Perspectives :\\}
+Il serait tout d'abord intéressant de savoir si ce modèle overfit.
+Pour cela il faudrait tester celui-ci sur une autre base de données.
+Les résultats permettraient de conclure sur l'efficacité de ce réseau.
+
+
+Pour pouvoir tirer de plus amples résultats il serait bien de tester la variation de
+l'apprentissage en fonction du nombre d'entrées du réseau utiles et inutiles.
+Par exemple un réseau faisant un produit scalaire entre son vecteur poids et son vecteur entrée,
+il permettra de définir une approximation de la taille de la base de données nécessaire à approximer une fonction.
+L'efficacité d'un réseau faisant la somme de ses deux premières entrées en fonction de la profondeur de l'apprentissage
+peut aussi être utile pour tester la résistance du réseau aux facteurs de confusion.
